@@ -34,4 +34,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private List<Role> roles;
+    //trang thai tai khoan
+    Boolean enable;
 }
