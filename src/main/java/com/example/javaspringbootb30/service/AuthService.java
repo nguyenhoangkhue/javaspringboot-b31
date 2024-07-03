@@ -50,7 +50,7 @@ public class AuthService {
             throw new BadRequestException("Email already exist");
         }
         Role userRole = roleRepository.findByName("USER")
-                .orElseThrow(() -> new BadRequestException("Khong co Role nay!"));
+                .orElseThrow(() -> new BadRequestException("Role does not exist"));
         User newUser = User.builder()
                 .name(request.getName())
                 .email(request.getEmail())
