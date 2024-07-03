@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register page</title>
+</head>
+<body>
+<h1>Register</h1>
+
+<form id="form-signup">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name"><br>
+
+    <label for="email">Email:</label><br>
+    <input type="text" id="email"><br>
+
+    <label for="password">Password:</label><br>
+    <input type="password" id="password"><br><br>
+
+    <button type="submit">Đăng ký</button>
+    <a href="/login">Quay lại đăng nhập</a>
+</form>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    const formSignupEl = document.getElementById('form-signup');
+    const nameEl = document.getElementById('name');
+    const emailEl = document.getElementById('email');
+    const passwordEl = document.getElementById('password');
+    formSignupEl.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const email = emailEl.value;
+        const password = passwordEl.value;
+        const name = nameEl.value;
+        const data = {
+            name,
+            email,
+            password
+        };
+
+        try {
+            const response = await axios.post('/api/auth/signup', data);
+            if (response.status === 200) {
+                alert('Đăng ký thành công');
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 1000);
+            }
+        } catch (error) {
+            alert(error.response.data.message);
+        }
+    });
+</script>
+</body>
+</html>
